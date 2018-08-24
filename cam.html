@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<img id="jpeg_4" width="1600" height="1200">
+<script type="text/javascript">
+	var camera_4 = {
+		addEvent: function(elem, event, func ){
+			if (typeof (window.event) != 'undefined')
+				{elem.attachEvent('on' + event, func);}
+			else
+				{elem.addEventListener(event, func, false);}
+		},
+		initCamera: function(jpeg, serverUrl, token, id, interval){
+		  this.addEvent(jpeg, 'load', function(){setTimeout(function() {camera_4.showJpegFrame(jpeg, serverUrl, token, id);}, interval);});
+		  this.showJpegFrame(jpeg, serverUrl, token, id);
+		},
+		showJpegFrame: function(jpeg, serverUrl, token, id){
+			jpeg.src = serverUrl+"/Jpeg/"+id+"?authToken="+token+"&"+new Date().getTime();
+		}
+	}
+
+camera_4.initCamera(jpeg_4, "http://82.38.138.205:8100", "ab66225d-349f-40bd-8579-4a6c429fbb9f", 4, 40);
+</script>
+</body>
+</html>
